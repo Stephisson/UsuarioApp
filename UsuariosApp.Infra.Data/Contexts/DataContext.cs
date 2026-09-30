@@ -12,8 +12,6 @@ namespace UsuariosApp.Infra.Data.Contexts
     /// </summary>
     public class DataContext : DbContext
     {
-        public DbSet<Usuario> Usuarios { get; set; }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //Configura a string de conexão com o banco de dados SQL Server.
@@ -23,6 +21,7 @@ namespace UsuariosApp.Infra.Data.Contexts
         {
             // Adicionar as classes de mapeamento
             modelBuilder.ApplyConfiguration(new UsuarioMap());
+            modelBuilder.ApplyConfiguration(new PerfilMap());
         }
     }
 }

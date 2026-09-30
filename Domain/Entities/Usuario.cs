@@ -14,5 +14,10 @@ namespace UsuariosApp.Domain.Entities
         public string Email { get; set; } = string.Empty;
         public string Senha { get; set; } = string.Empty;
         public DateTime DataHoraCriacao { get; set; } = DateTime.Now;
+        public Guid? PerfilId { get; set; } //Chave estrangeira
+
+        #region Relacionamentos
+        public Perfil? Perfil { get; set; }
+        #endregion
     }
 }
