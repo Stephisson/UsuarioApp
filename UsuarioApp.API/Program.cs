@@ -35,3 +35,6 @@ app.MapScalarApiReference(s => s.WithTheme(ScalarTheme.BluePlanet));
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
+
+//Declarando a classe Program.cs como publica
+public partial class Program { }

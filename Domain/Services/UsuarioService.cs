@@ -80,15 +80,18 @@ public class UsuarioService (IUsuarioRepository usuarioRepository, IPerfilReposi
             throw new ApplicationException("Acesso negado. Usuário inválido.");
         }
 
+        //gerar o token JWT
+        var token = JwtHelper.GenerateToken(usuario.Email, usuario.Perfil?.Nome ?? string.Empty);
+
         //retornar os dados do usuário autenticado
         return new AutenticarResponse(
-            usuario.Id,                 //Id do usuário
-            usuario.Nome,               //Nome do usuario
-            usuario.Email,              //Email do usuário
-            usuario.Perfil?.Nome,       //Nome do perfil do usuário
-            DateTime.Now,               //Data e hora de acesso
-            DateTime.Now.AddHours(1),   //Data e hora de expiração
-            "<<TOKEN>>" //TOKEN do JWT (Fazer!)
+            usuario.Id,                           //Id do usuário
+            usuario.Nome,                         //Nome do usuário
+            usuario.Email,                        //Email do usuário
+            usuario.Perfil?.Nome ?? string.Empty, //Nome do perfil do usuário
+            DateTime.Now,                         //Data e hora de acesso
+            DateTime.Now.AddHours(2),             //Data e hora de expiração
+            token                                 //TOKEN do JWT (Fazer!)
         );
     }
 }
