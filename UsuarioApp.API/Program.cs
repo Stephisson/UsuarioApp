@@ -1,20 +1,25 @@
 using Scalar.AspNetCore;
+using UsuariosApp.Domain.Interfaces;
+using UsuariosApp.Domain.Interfaces.Services;
+using UsuariosApp.Domain.Services;
+using UsuariosApp.Infra.Data.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
 //Configuração para a documentação do Swagger
 builder.Services.AddEndpointsApiExplorer(); //Swagger
 builder.Services.AddSwaggerGen(); //Swagger
 
+//Configurações de injeção de dependência
+builder.Services.AddTransient<IUsuarioRepository, UsuarioRepository>(); 
+builder.Services.AddTransient<IPerfilRepository, PerfilRepository>(); 
+builder.Services.AddTransient<IUsuarioService, UsuarioService>();
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
@@ -28,7 +33,5 @@ app.UseSwaggerUI(); //Swagger
 app.MapScalarApiReference(s => s.WithTheme(ScalarTheme.BluePlanet));
 
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

@@ -31,7 +31,7 @@ namespace UsuariosApp.Domain.Validator
             //Regra de validação da senha do usuário
             RuleFor(u => u.Senha)
                 .NotEmpty().WithMessage("A senha do usuário é obrigatória.")
-                .Matches(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.* [@$!%*?&_\-])[A-Za-z\d@$!%*?&_\-]{8,}$")
+                .Matches(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&_#\-])[A-Za-z\d@$!%*?&_#\-]{8,}$")
                 .WithMessage("A senha deve ter letra maiúscula, minúscula, número, símbolo e pelo menos 8 caracteres.");
         }
     }

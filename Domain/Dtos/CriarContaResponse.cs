@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace UsuariosApp.Domain.Dtos
+﻿namespace UsuariosApp.Domain.Dtos
 {
     /// <summary> 
     /// DTO para a resposta de criação de conta de usuário. 
